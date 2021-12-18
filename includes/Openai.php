@@ -1,7 +1,12 @@
 <?php
 class Openai{
-    private function secret_key(){
-        return $secret_key = 'Bearer ******YOUR-KEY-HERE********';
+	
+	private static $secret_key;
+	
+	// set and/or return secret key.
+	private function secret_key($set = false){
+		if ($set) $this->secret_key = $set;
+        return $this->secret_key;
     }
 
     public function request($engine, $prompt, $max_tokens){ 
@@ -41,9 +46,9 @@ class Openai{
         curl_close($curl);
 
         if ($err) {
-            echo "Error #:" . $err;
+            return "Error #:" . $err;
         } else {
-            echo $response;
+            return $response;
         }
 
     }
@@ -84,9 +89,9 @@ class Openai{
         curl_close($curl);
 
         if ($err) {
-            echo "Error #:" . $err;
+            return "Error #:" . $err;
         } else {
-            echo $response;
+            return $response;
         }
 
     }
